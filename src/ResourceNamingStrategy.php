@@ -123,7 +123,7 @@ class ResourceNamingStrategy implements NamingStrategy
      *
      * @return string A join column name.
      */
-    function joinKeyColumnName(string $entityName, string $referencedColumnName): string
+    function joinKeyColumnName(string $entityName, ?string $referencedColumnName): string
     {
         return $this->propertyToColumnName($entityName) . "_" . ($referencedColumnName ?: $this->referenceColumnName());
     }
