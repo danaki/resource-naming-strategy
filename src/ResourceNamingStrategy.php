@@ -89,7 +89,7 @@ class ResourceNamingStrategy implements NamingStrategy
      *
      * @return string A join column name.
      */
-    function joinColumnName(string $propertyName/*, $className = null*/)
+    function joinColumnName(string $propertyName, string $className): string
     {
         return $this->propertyToColumnName($propertyName) . '_' . $this->referenceColumnName();
     }
@@ -103,7 +103,7 @@ class ResourceNamingStrategy implements NamingStrategy
      *
      * @return string A join table name.
      */
-    function joinTableName(string $sourceEntity, string $targetEntity, string $propertyName = null)
+    function joinTableName(string $sourceEntity, string $targetEntity, string $propertyName): string
     {
         $names = [
             $this->propertyToColumnName($sourceEntity),
@@ -123,7 +123,7 @@ class ResourceNamingStrategy implements NamingStrategy
      *
      * @return string A join column name.
      */
-    function joinKeyColumnName(string $entityName, string $referencedColumnName = null)
+    function joinKeyColumnName(string $entityName, string $referencedColumnName): string
     {
         return $this->propertyToColumnName($entityName) . "_" . ($referencedColumnName ?: $this->referenceColumnName());
     }
