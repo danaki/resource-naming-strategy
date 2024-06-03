@@ -25,7 +25,7 @@ class ResourceNamingStrategy implements NamingStrategy
      *
      * @return string A table name.
      */
-    function classToTableName($className)
+    function classToTableName(string $className): string
     {
         if (strpos($className, "\\") !== false) {
             $className = substr($className, strrpos($className, "\\") + 1);
