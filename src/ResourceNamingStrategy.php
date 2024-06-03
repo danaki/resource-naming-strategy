@@ -45,7 +45,7 @@ class ResourceNamingStrategy implements NamingStrategy
      *
      * @return string A column name.
      */
-    function propertyToColumnName($propertyName, $className = null)
+    function propertyToColumnName(string $propertyName, string $className): string
     {
         if (strpos($propertyName, "\\") !== false) {
             $propertyName = substr($propertyName, strrpos($propertyName, "\\") + 1);
