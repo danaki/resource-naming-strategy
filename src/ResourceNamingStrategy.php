@@ -62,7 +62,7 @@ class ResourceNamingStrategy implements NamingStrategy
      *
      * @return string
      */
-    function embeddedFieldToColumnName($propertyName, $embeddedColumnName, $className = null, $embeddedClassName = null)
+    function embeddedFieldToColumnName(string $propertyName, string $embeddedColumnName, string $className, string $embeddedClassName): string
     {
         $propertyName = $this->propertyToColumnName($propertyName);
         $embeddedColumnName = $this->propertyToColumnName($embeddedColumnName);
