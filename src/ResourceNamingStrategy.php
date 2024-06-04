@@ -45,7 +45,7 @@ class ResourceNamingStrategy implements NamingStrategy
      *
      * @return string A column name.
      */
-    function propertyToColumnName(string $propertyName, string $className): string
+    function propertyToColumnName(string $propertyName, string $className = null): string
     {
         if (strpos($propertyName, "\\") !== false) {
             $propertyName = substr($propertyName, strrpos($propertyName, "\\") + 1);
@@ -62,7 +62,7 @@ class ResourceNamingStrategy implements NamingStrategy
      *
      * @return string
      */
-    function embeddedFieldToColumnName(string $propertyName, string $embeddedColumnName, string $className, string $embeddedClassName): string
+    function embeddedFieldToColumnName(string $propertyName, string $embeddedColumnName, string $className = null, string $embeddedClassName = null): string
     {
         $propertyName = $this->propertyToColumnName($propertyName);
         $embeddedColumnName = $this->propertyToColumnName($embeddedColumnName);
@@ -89,7 +89,7 @@ class ResourceNamingStrategy implements NamingStrategy
      *
      * @return string A join column name.
      */
-    function joinColumnName(string $propertyName, string $className): string
+    function joinColumnName(string $propertyName, string $className = null): string
     {
         return $this->propertyToColumnName($propertyName) . '_' . $this->referenceColumnName();
     }
@@ -103,7 +103,7 @@ class ResourceNamingStrategy implements NamingStrategy
      *
      * @return string A join table name.
      */
-    function joinTableName(string $sourceEntity, string $targetEntity, string $propertyName): string
+    function joinTableName(string $sourceEntity, string $targetEntity, string $propertyName = null): string
     {
         $names = [
             $this->propertyToColumnName($sourceEntity),
@@ -123,7 +123,7 @@ class ResourceNamingStrategy implements NamingStrategy
      *
      * @return string A join column name.
      */
-    function joinKeyColumnName(string $entityName, ?string $referencedColumnName): string
+    function joinKeyColumnName(string $entityName, ?string $referencedColumnName = null): string
     {
         return $this->propertyToColumnName($entityName) . "_" . ($referencedColumnName ?: $this->referenceColumnName());
     }
