@@ -25,7 +25,7 @@ class ResourceNamingStrategy implements NamingStrategy
      *
      * @return string A table name.
      */
-    function classToTableName(string $className): string
+    function classToTableName($className)
     {
         if (strpos($className, "\\") !== false) {
             $className = substr($className, strrpos($className, "\\") + 1);
@@ -45,7 +45,7 @@ class ResourceNamingStrategy implements NamingStrategy
      *
      * @return string A column name.
      */
-    function propertyToColumnName(string $propertyName, string $className = null): string
+    function propertyToColumnName($propertyName, $className = null)
     {
         if (strpos($propertyName, "\\") !== false) {
             $propertyName = substr($propertyName, strrpos($propertyName, "\\") + 1);
@@ -62,7 +62,7 @@ class ResourceNamingStrategy implements NamingStrategy
      *
      * @return string
      */
-    function embeddedFieldToColumnName(string $propertyName, string $embeddedColumnName, string $className = null, string $embeddedClassName = null): string
+    function embeddedFieldToColumnName($propertyName, $embeddedColumnName, $className = null, $embeddedClassName = null)
     {
         $propertyName = $this->propertyToColumnName($propertyName);
         $embeddedColumnName = $this->propertyToColumnName($embeddedColumnName);
@@ -75,7 +75,7 @@ class ResourceNamingStrategy implements NamingStrategy
      *
      * @return string A column name.
      */
-    function referenceColumnName(): string
+    function referenceColumnName()
     {
         return 'id';
     }
@@ -89,7 +89,7 @@ class ResourceNamingStrategy implements NamingStrategy
      *
      * @return string A join column name.
      */
-    function joinColumnName(string $propertyName, string $className = null): string
+    function joinColumnName($propertyName, $className = null)
     {
         return $this->propertyToColumnName($propertyName) . '_' . $this->referenceColumnName();
     }
@@ -103,7 +103,7 @@ class ResourceNamingStrategy implements NamingStrategy
      *
      * @return string A join table name.
      */
-    function joinTableName(string $sourceEntity, string $targetEntity, string $propertyName = null): string
+    function joinTableName($sourceEntity, $targetEntity, $propertyName = null)
     {
         $names = [
             $this->propertyToColumnName($sourceEntity),
@@ -123,7 +123,7 @@ class ResourceNamingStrategy implements NamingStrategy
      *
      * @return string A join column name.
      */
-    function joinKeyColumnName(string $entityName, ?string $referencedColumnName = null): string
+    function joinKeyColumnName($entityName, $referencedColumnName = null)
     {
         return $this->propertyToColumnName($entityName) . "_" . ($referencedColumnName ?: $this->referenceColumnName());
     }
